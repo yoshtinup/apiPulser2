@@ -1,47 +1,48 @@
 export class PagoUser {
-    constructor(id, hora_entrada, hora_salida, fecha) {
-      this.id = id;
-      this.hora_entrada = this.validateTime(hora_entrada);
-      this.hora_salida = this.validateTime(hora_salida);
-      this.fecha = this.validateDate(fecha);
-    }
-  
-    // Método para validar una fecha
-    validateDate(date) {
-        // Si la fecha es una cadena, intenta convertirla a formato ISO
-        if (typeof date === 'string') {
-          // Intenta parsear la fecha en un formato más consistente
-          const parsedDate = new Date(date);
-      
-          // Verifica si la fecha es inválida
-          if (isNaN(parsedDate.getTime())) {
-            throw new Error('Invalid date value');
-          }
-      
-          return parsedDate;
-        }
-      
-        // Si ya es una instancia de Date, verifica su validez
-        if (!(date instanceof Date) || isNaN(date.getTime())) {
-          throw new Error('Invalid date value');
-        }
-      
-        return date;
-      }
-    // Método para validar la hora
-    validateTime(time) {
-      const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-  
-      if (!timeRegex.test(time)) {
-        throw new Error('Invalid time value. Format must be HH:MM');
-      }
-  
-      return time;
-    }
-  
-    // Método para obtener el resumen del registro de entrada y salida
-    getEntrySummary() {
-      return `ID: ${this.id}, Fecha: ${this.fecha.toLocaleDateString()}, Hora de Entrada: ${this.horaEntrada}, Hora de Salida: ${this.horaSalida}`;
-    }
+  constructor(id, codigo, monto, moneda, pieza, fecha) {
+    this.id = id;
+    this.codigo = this.validateCodigo(codigo);
+    this.monto = monto;
+    this.moneda = moneda;
+    this.pieza = pieza;
+    this.fecha = this.validateDate(fecha);
   }
-  
+
+  // Método para validar un código (en este caso, un UUID)
+  validateCodigo(codigo) {
+    const codigoRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+    
+    if (!codigoRegex.test(codigo)) {
+      throw new Error('Invalid code value. Must be a valid UUID.');
+    }
+
+    return codigo;
+  }
+
+  // Método para validar una fecha
+  validateDate(date) {
+    // Si la fecha es una cadena, intenta convertirla a formato ISO
+    if (typeof date === 'string') {
+      const parsedDate = new Date(date);
+
+      // Verifica si la fecha es inválida
+      if (isNaN(parsedDate.getTime())) {
+        throw new Error('Invalid date value');
+      }
+
+      return parsedDate;
+    }
+
+    // Si ya es una instancia de Date, verifica su validez
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      throw new Error('Invalid date value');
+    }
+
+    return date;
+  }
+
+  // Método para obtener el resumen del pago
+  getPaymentSummary() {
+    return `ID: ${this.id}, Código: ${this.codigo}, Monto: ${this.monto}, Moneda: ${this.moneda}, Pieza: ${this.pieza}, Fecha: ${this.fecha.toLocaleDateString()}`;
+  }
+}

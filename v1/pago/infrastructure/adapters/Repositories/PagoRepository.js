@@ -4,7 +4,7 @@ import { IPagoRepository } from '../../../domian/ports/IPagoRepository.js';
 import { db } from '../../../../../database/mysql.js';
 
 export class PagoRepository extends IPagoRepository {
-  async createNewHistory(pago) {
+  async createPayment(pago) {
     const sql = "INSERT INTO pago( codigo , monto, moneda, pieza, fecha) VALUES (?, ?, ?, ?, ?)";
   
     // Convertir valores undefined a null

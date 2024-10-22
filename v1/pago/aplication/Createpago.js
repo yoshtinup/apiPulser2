@@ -13,9 +13,9 @@ export class Createpago {
    */
   async execute(pagoData) {
     // Crear una instancia de la entidad RegistroCliente (aplica validaciones)
-    const { id, hora_entrada, hora_salida, fecha } = pagoData;
-    const history = new HistoryUser(id, hora_entrada, hora_salida, fecha );
+    const { id, codigo, monto, moneda, pieza, fecha } = pagoData;
+    const history = new PagoUser(id, codigo, monto, moneda, pieza, fecha );
     // Guardar el cliente en el repositorio
-    return await this.pagoRepository.getAllPayments(history);
+    return await this.pagoRepository.createPayment(history);
   }
 }

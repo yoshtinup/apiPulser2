@@ -1,11 +1,11 @@
 
 import { GetAllPago } from "../../../aplication/GetAllPago.js";
 import { Createpago } from "../../../aplication/Createpago.js";
-
+//import { PaymentRepository } from "../../../../Services/Infrestructura/adapters/Services/PaymentRepository.js";
+//import { PaymentController } from "../../../../Services/Infrestructura/adapters/Controllers/PaymentController.js";
 
 export class PagoController {
   constructor(pagoRepository) {
-   
     this.getAllHistoryUseCase = new GetAllPago(pagoRepository);
     this.createHistoryUseCase = new Createpago(pagoRepository);
 
@@ -13,11 +13,11 @@ export class PagoController {
 
   async createPayment(req, res) {
     try {
-      const { codido, monto, moneda, pieza, fecha} = req.body;
+      const { codigo, monto, moneda, pieza, fecha} = req.body;
   
       // Validar que los campos obligatorios estén presentes y no sean undefined
 
-      const pagoData = { codido: codido ?? '', monto: monto ?? '', moneda:moneda ?? '', pieza:pieza ?? '' , fecha: fecha ?? ''};
+      const pagoData = { codigo: codigo ?? '', monto: monto ?? '', moneda:moneda ?? '', pieza:pieza ?? '' , fecha: fecha ?? ''};
       const newPago = await this.createHistoryUseCase.execute(pagoData);
       res.status(201).json(newPago);
     } catch (error) {
