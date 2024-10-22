@@ -11,7 +11,7 @@ export class CreatePaymentUseCase {
      */
     async execute(item) {
       // Llamar al repositorio para crear la preferencia de pago
-      return await this.servicesRepository.createPaymentPreference(item);
+      return await this.servicesRepository.createPayment(item);
     }
   }
 

@@ -22,7 +22,6 @@ export class PaymentController {
       };
       // Ejecutar el caso de uso para crear la preferencia de pago
       const paymentLink = await this.createPaymentUseCase.execute(item);
-
       // Enviar el enlace de pago en la respuesta
       res.status(200).json(paymentLink);
     } catch (error) {

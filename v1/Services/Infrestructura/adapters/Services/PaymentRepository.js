@@ -7,7 +7,7 @@ export class PaymentRepository extends IExteriorService {
     super();
     this.mpClient = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
   }
-    async createPaymentPreference(item) {
+    async createPayment(item) {
         try {
           const preference = new Preference(this.mpClient);
 
@@ -23,8 +23,7 @@ export class PaymentRepository extends IExteriorService {
             }
           })
           return {
-            init_point: response.init_point,
-            sandbox_init_point: response.sandbox_init_point
+            init_point: response.init_point
           };
         } catch (error) {
           throw new Error(`Error creando preferencia de pago: ${error.message}`);

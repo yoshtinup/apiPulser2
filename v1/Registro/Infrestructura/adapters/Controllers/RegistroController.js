@@ -33,7 +33,7 @@ export class RegistroController {
 
       // Intentar enviar el mensaje sin bloquear la respuesta principal
       try {
-        await await this.mensajeController.sendMessageUseCase.execute(newClient.telefono, mensaje);
+        await this.mensajeController.sendMessageUseCase.execute(newClient.telefono, mensaje);
       } catch (smsError) {
         console.error('Error al enviar el SMS:', smsError.message);
       }
