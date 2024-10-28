@@ -1,7 +1,7 @@
 import express from "express";
 import signale from "signale";
 import { clientRouter } from "./v1/Registro/Infrestructura/interfaces/http/router/RegistroRouter.js";
-import { LoginRouter } from "./v1/Login/Infrestructura/interfaces/http/router/LoginRouter.js";
+import { BoletoRouter } from "./v1/Boleto/Infrestructura/interfaces/http/router/BoletoRouter.js";
 import { MessageRouter } from "./v1/Services/Infrestructura/interfaces/http/router/MenssageRouter.js";
 import { CorreoRouter } from "./v1/Services/Infrestructura/interfaces/http/router/CorreoRouter.js";
 import { PaymentRouter } from "./v1/Services/Infrestructura/interfaces/http/router/PaymentRouter.js";
@@ -16,8 +16,8 @@ app.use("/api/v1", clientRouter);
 app.use("/api/v1", MessageRouter);
 app.use("/api/v1", CorreoRouter);
 app.use("/api/v1", PaymentRouter);
-app.use("/api/v1", LoginRouter);
-app.use("/api/v1", pagoRouter)
+app.use("/api/v1", pagoRouter);
+app.use("/api/v1", BoletoRouter);
 // Usar el router de pago
 
 app.listen(3002, () => {

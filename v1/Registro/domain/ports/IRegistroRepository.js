@@ -15,7 +15,9 @@ export class IRegistroRepository {
     updateClientById(id, client) {
       throw new Error('Metodo de actualizar cliente no se implemento correctamente');
     }
-  
+    findLoginByUsername(usuario) {
+      throw new Error('Method not implemented');
+    } 
   }
     
     

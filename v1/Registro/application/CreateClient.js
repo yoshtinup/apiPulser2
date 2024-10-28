@@ -14,8 +14,8 @@ export class CreateClient {
    */
   async execute(clientData) {
     // Crear una instancia de la entidad RegistroCliente (aplica validaciones)
-    const { id, nombre, apellido, telefono, gmail, codigo } = clientData;
-    const client = new RegistroCliente(id, nombre, apellido, telefono, gmail, codigo);
+    const { id, nombre, apellido, telefono, gmail, codigo, usuario} = clientData;
+    const client = new RegistroCliente(id, nombre, apellido, telefono, gmail, codigo, usuario);
 
     // Guardar el cliente en el repositorio
     return await this.clientRepository.createNewClient(client);
