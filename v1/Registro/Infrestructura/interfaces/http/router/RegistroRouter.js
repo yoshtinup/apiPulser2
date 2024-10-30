@@ -1,19 +1,31 @@
-
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 
 import { RegistroRepository } from '../../../adapters/Repositories/RegistroRepository.js';
-
 import { RegistroController } from '../../../adapters/Controllers/RegistroController.js';
 import { VerifyToken } from '../middlewares/verifyToken.js';
-export const clientRouter = express.Router(); 
+import { auditLogger } from '../middlewares/auditLogger.js';
+
+export const clientRouter = express.Router();
 
 const clientRepository = new RegistroRepository();
 const clientController = new RegistroController(clientRepository);
 
-// Definir la ruta POST /clients
-clientRouter.post('/register', (req, res) => clientController.createClient(req, res));
-clientRouter.get("/clientes", VerifyToken,(req, res) => clientController.getAllClients(req, res));
-clientRouter.post('/loginNew', (req, res) => clientController.verifyLogin(req, res));
-clientRouter.get("/cliente/:id", VerifyToken,(req, res) => clientController.getClientById(req, res));
-clientRouter.put("/cliente/:id",VerifyToken,(req, res) => clientController.updateClientById(req, res));
-clientRouter.delete("/cliente/:id",VerifyToken,(req, res) => clientController.deleteClientById(req,res));
+// Configuración del rate limiting específico para clientRouter
+const clientRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // Ventana de tiempo de 15 minutos
+  max: 3, // Máximo de 3 peticiones por IP en esa ventana
+  message: "Límite de solicitudes excedido. Intente de nuevo más tarde.",
+  handler: (req, res, next) => {
+    console.warn(`Límite de peticiones excedido para la IP: ${req.ip}`);
+    res.status(429).json({ error: "Límite de solicitudes excedido. Intente de nuevo más tarde." });
+  }
+});
+
+// Aplicar el rate limiter y auditLogger a las rutas específicas de clientRouter
+clientRouter.post('/register', clientRateLimiter, auditLogger('Registro de Cliente'), (req, res) => clientController.createClient(req, res));
+clientRouter.get('/clientes', clientRateLimiter, VerifyToken, auditLogger('Consulta de Clientes'), (req, res) => clientController.getAllClients(req, res));
+clientRouter.post('/loginNew', clientRateLimiter, auditLogger('Inicio de Sesión'), (req, res) => clientController.verifyLogin(req, res));
+clientRouter.get('/cliente/:id', clientRateLimiter, VerifyToken, auditLogger('Consulta de Cliente por ID'), (req, res) => clientController.getClientById(req, res));
+clientRouter.put('/cliente/:id', clientRateLimiter, VerifyToken, auditLogger('Actualización de Cliente'), (req, res) => clientController.updateClientById(req, res));
+clientRouter.delete('/cliente/:id', clientRateLimiter, VerifyToken, auditLogger('Eliminación de Cliente'), (req, res) => clientController.deleteClientById(req, res));
