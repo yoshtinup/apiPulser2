@@ -1,7 +1,8 @@
 
 import twilio from "twilio"
+import dotenv from 'dotenv';
 import { IExteriorService } from "../../../Dominio/ports/IExteriorService.js";
-
+dotenv.config();
 export class MessageRepository extends IExteriorService {
   constructor() {
     super();

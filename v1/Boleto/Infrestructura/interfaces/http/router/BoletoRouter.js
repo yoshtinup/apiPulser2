@@ -16,3 +16,4 @@ BoletoRouter.get("/boleto/:id", (req, res) => boletoController.getBoletoById(req
 BoletoRouter.post("/boleto",(req, res) => boletoController.createBoleto(req, res));
 BoletoRouter.put("/boleto/:id",(req, res) => boletoController.updateBoletoById(req, res));
 BoletoRouter.delete("/boleto/:id" ,(req, res) => boletoController.deleteBoletoById(req, res));
+
