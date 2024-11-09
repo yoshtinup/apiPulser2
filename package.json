@@ -6,14 +6,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev:usuario": "nodemon serverUsuario.js",
-    "dev:principal": "nodemon server.js",
+    "dev:usuario": "nodemon server.js",
     "dev:notificacion": "nodemon serverNotificacion.js",
-    "start:usuario": "node serverUsuario.js",
-    "start:principal": "node server.js",
-    "start:notificacion": "node serverNotificacion.js",
-    "dev:all": "concurrently \"nodemon server.js\" \"nodemon serverNotificacion.js\" \"nodemon serverUsuario.js\"",
-    "start:all": "concurrently \"node server.js\" \"node serverNotificacion.js\" \"node serverUsuario.js\""
+    "start:usuario": "node server.js",
+    "start:notificacion": "node serverNotificacion.js"
   },
   "keywords": [],
   "author": "",

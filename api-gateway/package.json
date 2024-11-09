@@ -2,19 +2,23 @@
   "name": "api-gateway",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "gateway.js",
   "scripts": {
+    "start": "node gateway.js",
+    "dev": "nodemon gateway.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["API Gateway", "Microservices", "MQTT", "Proxy"],
+  "author": "Tu Nombre",
   "license": "ISC",
-  "description": "",
+  "description": "API Gateway for managing microservices communication with HTTP and MQTT.",
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "http-proxy-middleware": "^3.0.3",
     "mqtt": "^4.3.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }
-
