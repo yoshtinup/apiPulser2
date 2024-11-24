@@ -39,15 +39,6 @@ export class RegistroController {
       // Responder con los datos del cliente creado
       res.status(201).json(newClient);
 
-      // Preparar el mensaje para el cliente
-      const mensaje = `Hola ${newClient.nombre} ${newClient.apellido}, tu código de verificación es: ${newClient.codigo}`;
-
-      // Intentar enviar el mensaje sin bloquear la respuesta principal
-      try {
-        await this.mensajeController.sendMessageUseCase.execute(newClient.telefono, mensaje);
-      } catch (smsError) {
-        console.error('Error al enviar el SMS:', smsError.message);
-      }
 
     } catch (error) {
       res.status(500).json({ message: error.message });
