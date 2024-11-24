@@ -64,9 +64,10 @@ export class BoletoRepository extends IBoletoRepository {
       throw new Error('Error retrieving History by ID');
     }
   }
+  
   async createNewBoleto(boleto) {
     // Cambié la tabla y los campos para reflejar un sistema de boletos
-    const sql = "INSERT INTO registropass (tipo, codigo, telefonoTaxi, evento, lugar) VALUES (?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO registropass (tipo, codigo, telefonoTaxi, evento, lugar, url) VALUES (?, ?, ?, ?, ?, ?)";
   
     // Convertir valores undefined a null y obtener valores de la instancia `boleto`
     const params = [
@@ -74,7 +75,8 @@ export class BoletoRepository extends IBoletoRepository {
       boleto.codigo ?? null,
       boleto.telefonoTaxi ?? null,
       boleto.evento ?? null,
-      boleto.lugar ?? null
+      boleto.lugar ?? null,
+      boleto.url ?? null
     ];
   
     try {
@@ -88,7 +90,8 @@ export class BoletoRepository extends IBoletoRepository {
         codigo: boleto.codigo,
         telefonoTaxi: boleto.telefonoTaxi,
         evento: boleto.evento,
-        lugar: boleto.lugar
+        lugar: boleto.lugar,
+        url: boleto.url
       };
     } catch (error) {
       console.error('Database Error:', error);

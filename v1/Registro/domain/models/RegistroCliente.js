@@ -1,13 +1,12 @@
-import { v4 as uuidv4 } from 'uuid';
 
 export class RegistroCliente {
-  constructor(id, nombre = '', apellido = '', telefono, gmail, codigo = null, usuario= '') {
+  constructor(id, nombre = '', apellido = '', telefono, gmail, codigo='', usuario= '') {
     this.id = id ?? null;
     this.nombre = nombre ? this.validateString(nombre) : '';
     this.apellido = apellido ? this.validateString(apellido) : '';
     this.telefono = this.validatePhoneNumber(telefono);
     this.gmail = this.validateEmail(gmail);
-    this.codigo = codigo ? this.validateCodigo(codigo) : this.generateCodigo(); 
+    this.codigo = codigo ; 
     this.usuario = usuario;
   }
 
@@ -42,21 +41,6 @@ export class RegistroCliente {
 
     return email.trim();
   }
-
-
-  validateCodigo(codigo) {
-    if (typeof codigo !== 'string' || codigo.trim() === '') {
-      throw new Error('Invalid code value');
-    }
-    return codigo.trim();
-  }
-
-
-  generateCodigo() {
-    return uuidv4(); 
-  }
-
-
   getFullName() {
     return `${this.nombre} ${this.apellido}`;
   }

@@ -1,11 +1,12 @@
 export class BoletoUser {
-  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar) {
+  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar, url) {
     this.id = id;
     this.tipo = this.validateTipo(tipo);
     this.codigo = this.validateCodigo(codigo);
     this.telefonoTaxi = this.validateTelefono(telefonoTaxi);
     this.evento = evento;
     this.lugar = lugar;
+    this.url = url;
   }
 
   // Validación para el campo 'tipo' (puedes ajustar esto según tu lógica de negocio)
@@ -37,6 +38,6 @@ export class BoletoUser {
 
   // Método para obtener el resumen del boleto
   getBoletoSummary() {
-    return `ID: ${this.id}, Tipo: ${this.tipo}, Código: ${this.codigo}, Teléfono: ${this.telefonoTaxi}, Evento: ${this.evento}, Lugar: ${this.lugar}`;
+    return `ID: ${this.id}, Tipo: ${this.tipo}, Código: ${this.codigo}, Teléfono: ${this.telefonoTaxi}, Evento: ${this.evento}, Lugar: ${this.lugar}, Url: ${this.url}`;
   }
 }

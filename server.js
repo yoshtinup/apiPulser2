@@ -24,13 +24,14 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 
-// Rutas de la API
+// Rutas de la API Usuarios
 app.use("/api/v1", clientRouter);
+app.use("/api/v1", pagoRouter);
+app.use("/api/v1", BoletoRouter);
+// Ruats de Api Services 
 app.use("/api/v1", MessageRouter);
 app.use("/api/v1", CorreoRouter);
 app.use("/api/v1", PaymentRouter);
-app.use("/api/v1", pagoRouter);
-app.use("/api/v1", BoletoRouter);
 // Endpoint para servir el archivo HTML
 app.get('/mostrar-html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

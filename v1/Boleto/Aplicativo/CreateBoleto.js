@@ -13,10 +13,10 @@ export class CreateBoleto {
    */
   async execute(boletoData) {
     // Extraer los campos de los datos proporcionados
-    const { id, tipo, codigo, telefonoTaxi, evento, lugar } = boletoData;
+    const { id, tipo, codigo, telefonoTaxi, evento, lugar, url } = boletoData;
 
     // Crear una instancia de la entidad Boleto con los datos (aplica validaciones si es necesario)
-    const boleto = new BoletoUser(id, tipo, codigo, telefonoTaxi, evento, lugar);
+    const boleto = new BoletoUser(id, tipo, codigo, telefonoTaxi, evento, lugar, url);
     
     // Guardar el boleto en el repositorio
     return await this.boletoRepository.createNewBoleto(boleto);
