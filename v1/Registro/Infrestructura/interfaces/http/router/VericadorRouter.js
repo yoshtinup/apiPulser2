@@ -12,3 +12,4 @@ const clientController = new VerificController(clientRepository);
 
 // Aplicar el rate limiter y auditLogger a las rutas específicas de clientVerific
 clientVerific.post('/verific', (req, res) => clientController.createNewVerific(req, res));
+clientVerific.get('/verific', (req, res) => clientController.getAllVerific(req, res));

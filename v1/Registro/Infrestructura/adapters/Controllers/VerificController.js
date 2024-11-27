@@ -1,9 +1,11 @@
 
-import { CreateVerific } from "../../../application/CreateVerific.js";
+import { CreateVerific } from "../../../aplicationVerific/CreateVerific.js";
+import { GetAllVerific } from "../../../aplicationVerific/GetAllVerific.js";
 
 export class VerificController {
   constructor(clientRepository) {
     this.createClientUseVerific = new CreateVerific(clientRepository);
+    this.getAllVereficsUseCase = new GetAllVerific(clientRepository);
   }
   // Método para manejar la solicitud HTTP POST /clients
   async createNewVerific(req, res) {
@@ -25,6 +27,16 @@ export class VerificController {
       res.status(500).json({ message: error.message });
     }
   }
+  
+  async getAllVerific(req, res) {
+    try {
+      const clients = await this.getAllVereficsUseCase.execute();
+      res.status(200).json(clients);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
 
 }
 
