@@ -18,6 +18,12 @@ export class IRegistroRepository {
     findLoginByUsername(usuario) {
       throw new Error('Method not implemented');
     } 
+    createNewVerific(client){
+      throw new Error('Metodo de agrgar cliente no se implemento correctamente');
+    }
+    getAllVerific(){
+      throw new Error('Metodo no se implemento correctamente');
+    }
   }
     
     
