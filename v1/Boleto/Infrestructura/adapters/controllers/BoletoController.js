@@ -32,7 +32,7 @@ export class BoletoController {
       const boletoData = req.body;
   
       // Validar que los datos estén presentes y no sean undefined o vacíos
-      if (!boletoData.tipo || !boletoData.codigo || !boletoData.telefonoTaxi || !boletoData.evento || !boletoData.lugar || !boletoData.nombre || !boletoData.status){
+      if ( !boletoData.status){
         return res.status(400).json({ message: 'All fields are required' });
       }
   
