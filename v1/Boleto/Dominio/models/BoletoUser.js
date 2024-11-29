@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class BoletoUser {
-  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status) {
+  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status, idcodigo = null) {
     this.id = id;
     this.tipo = this.validateTipo(tipo);
     this.codigo = this.validateCodigo(codigo);
@@ -9,6 +11,7 @@ export class BoletoUser {
     this.url = url;
     this.nombre = nombre;
     this.status = status;
+    this.idcodigo = idcodigo ? this.validateCodigo(idcodigo) : this.generateCodigo(); 
   }
 
   // Validación para el campo 'tipo' (puedes ajustar esto según tu lógica de negocio)
@@ -36,6 +39,18 @@ export class BoletoUser {
       throw new Error('Invalid telefonoTaxi value. Must be a valid 10-digit phone number');
     }
     return telefonoTaxi;
+  }
+
+  validateCodigo(idcodigo) {
+    if (typeof idcodigo !== 'string' || idcodigo.trim() === '') {
+      throw new Error('Invalid code value');
+    }
+    return idcodigo.trim();
+  }
+
+
+  generateCodigo() {
+    return uuidv4(); 
   }
 
   // Método para obtener el resumen del boleto

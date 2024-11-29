@@ -56,12 +56,7 @@ export class BoletoController {
   async createBoleto(req, res) {
     try {
       // Extraer los campos del cuerpo de la solicitud (body)
-      const { tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status} = req.body;
-  
-      // Validar que los campos obligatorios estén presentes (puedes personalizar según tu lógica)
-      if (!tipo || !codigo || !telefonoTaxi || !evento || !lugar || !url || !nombre || !status) {
-        return res.status(400).json({ message: 'All fields are required' });
-      }
+      const { tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status, idcodigo} = req.body;
   
       // Crear el objeto que será pasado al caso de uso para crear el boleto
       const boletoData = {
@@ -73,6 +68,7 @@ export class BoletoController {
         url: url ?? '', 
         nombre: nombre ?? '',
         status: status ?? '',
+        idcodigo: idcodigo ?? ''
       };
   
       // Ejecutar el caso de uso para crear el boleto
@@ -108,7 +104,6 @@ export class BoletoController {
       res.status(500).json({ message: error.message });
     }
   }
-
 
 }
 

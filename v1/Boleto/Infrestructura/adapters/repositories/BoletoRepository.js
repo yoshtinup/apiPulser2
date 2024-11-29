@@ -69,7 +69,7 @@ export class BoletoRepository extends IBoletoRepository {
   
   async createNewBoleto(boleto) {
     // Cambié la tabla y los campos para reflejar un sistema de boletos
-    const sql = "INSERT INTO registropass (tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO registropass (tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status, idcodigo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
   
     // Convertir valores undefined a null y obtener valores de la instancia `boleto`
     const params = [
@@ -80,7 +80,8 @@ export class BoletoRepository extends IBoletoRepository {
       boleto.lugar ?? null,
       boleto.url ?? null,
       boleto.nombre ?? null,
-      boleto.status ?? null
+      boleto.status ?? null,
+      boleto.idcodigo ?? null
     ];
   
     try {
@@ -97,7 +98,8 @@ export class BoletoRepository extends IBoletoRepository {
         lugar: boleto.lugar,
         url: boleto.url,
         nombre: boleto.nombre,
-        status: boleto.status
+        status: boleto.status,
+        idcodigo: boleto.idcodigo
       };
     } catch (error) {
       console.error('Database Error:', error);
