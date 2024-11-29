@@ -18,7 +18,7 @@ export class BoletoRepository extends IBoletoRepository {
   }
   
   async updateBoletoById(id, boleto) {
-    const sql = "UPDATE registropass SET tipo = ?, codigo = ?, telefonoTaxi = ?, evento = ?, lugar = ?, nombre = ?, status = ? WHERE id = ?";
+    const sql = "UPDATE registropass SET tipo = ?, codigo = ?, telefonoTaxi = ?, evento = ?, lugar = ?, nombre = ?, status = ? WHERE idcodigo = ?";
     const params = [
       boleto.tipo ?? null,
       boleto.codigo ?? null,
