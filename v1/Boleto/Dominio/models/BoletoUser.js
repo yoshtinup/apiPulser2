@@ -22,7 +22,7 @@ export class BoletoUser {
 
   // Validación para el campo 'codigo' (puedes ajustar esto según tus requisitos)
   validateCodigo(codigo) {
-    if (!codigo || codigo.length < 10 || codigo.length > 50) {
+    if (!codigo || codigo.length < 5 || codigo.length > 50) {
       throw new Error('Invalid codigo value. Must be between 10 and 50 characters');
     }
     return codigo;
