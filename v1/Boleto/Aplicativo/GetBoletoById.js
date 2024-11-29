@@ -5,7 +5,7 @@ export class GetBoletoById {
   
     /**
      * Ejecutar la obtención de un cliente por su ID.
-     * @param {number} id - El ID del cliente.
+     * @param {number} idcodigo- El ID del cliente.
      * @returns {Promise<Object>} - Los datos del cliente encontrado.
      */
     async execute(id) {

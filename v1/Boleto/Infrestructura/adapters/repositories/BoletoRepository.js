@@ -56,7 +56,7 @@ export class BoletoRepository extends IBoletoRepository {
     }
   }
   async getBoletoById(id) {
-    const sql = "SELECT * FROM registropass WHERE id=?";
+    const sql = "SELECT * FROM registropass WHERE idcodigo=?";
     const params = [id];
     try {
       const [result] = await db.query(sql, params);
