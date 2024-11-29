@@ -18,13 +18,15 @@ export class BoletoRepository extends IBoletoRepository {
   }
   
   async updateBoletoById(id, boleto) {
-    const sql = "UPDATE registropass SET tipo = ?, codigo = ?, telefonoTaxi = ?, evento = ?, lugar = ? WHERE id = ?";
+    const sql = "UPDATE registropass SET tipo = ?, codigo = ?, telefonoTaxi = ?, evento = ?, lugar = ?, nombre = ?, status = ? WHERE id = ?";
     const params = [
       boleto.tipo ?? null,
       boleto.codigo ?? null,
       boleto.telefonoTaxi ?? null,
       boleto.evento ?? null,
       boleto.lugar ?? null,
+      boleto.nombre ?? null,
+      boleto.status ?? null,
       id
     ];
   
@@ -102,7 +104,7 @@ export class BoletoRepository extends IBoletoRepository {
       throw new Error('Error creating new Boleto');
     }
   }
-  
+
 }
 
 
