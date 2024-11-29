@@ -10,7 +10,7 @@ import { MessageRouter } from "./v1/Services/Infrestructura/interfaces/http/rout
 import { CorreoRouter } from "./v1/Services/Infrestructura/interfaces/http/router/CorreoRouter.js";
 import { PaymentRouter } from "./v1/Services/Infrestructura/interfaces/http/router/PaymentRouter.js";
 import { pagoRouter } from "./v1/pago/infrastructure/interfaces/http/router/pagoRouter.js";
-import { clientVerific } from "./v1/Registro/Infrestructura/interfaces/http/router/vericadorRouter.js";
+import { clientVerific } from "./v1/Registro/Infrestructura/interfaces/http/router/VericadorRouter.js";
 const app = express();
 
 app.use(express.static('public'));

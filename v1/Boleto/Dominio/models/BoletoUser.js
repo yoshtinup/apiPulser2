@@ -1,5 +1,5 @@
 export class BoletoUser {
-  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar, url) {
+  constructor(id, tipo, codigo, telefonoTaxi, evento, lugar, url, nombre, status) {
     this.id = id;
     this.tipo = this.validateTipo(tipo);
     this.codigo = this.validateCodigo(codigo);
@@ -7,6 +7,8 @@ export class BoletoUser {
     this.evento = evento;
     this.lugar = lugar;
     this.url = url;
+    this.nombre = nombre;
+    this.status = status;
   }
 
   // Validación para el campo 'tipo' (puedes ajustar esto según tu lógica de negocio)
