@@ -13,7 +13,7 @@ export class PagoRepository extends IPagoRepository {
       pago.monto?? null,
       pago.moneda?? null,
       pago.pieza?? null,
-      pago.fecha?? null
+      pago.fecha?? null,
     ];
   
     try {

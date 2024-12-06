@@ -1,7 +1,7 @@
 export class PagoUser {
-  constructor(id, codigo, monto, moneda, pieza, fecha) {
+  constructor(id, codigo = '', monto, moneda, pieza, fecha) {
     this.id = id;
-    this.codigo = this.validateCodigo(codigo);
+    this.codigo = codigo;
     this.monto = monto;
     this.moneda = moneda;
     this.pieza = pieza;
@@ -9,15 +9,7 @@ export class PagoUser {
   }
 
   // Método para validar un código (en este caso, un UUID)
-  validateCodigo(codigo) {
-    const codigoRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-    
-    if (!codigoRegex.test(codigo)) {
-      throw new Error('Invalid code value. Must be a valid UUID.');
-    }
 
-    return codigo;
-  }
 
   // Método para validar una fecha
   validateDate(date) {
